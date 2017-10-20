@@ -20,7 +20,7 @@ do
 	
 	if [ $(echo $score'<='$upper | bc -l) -eq 1 ]
 	then
-		echo $PDB "has score of" $fa_rep	
+		echo $PDB "has score of" $score	
 		echo "$PDB passes the score <= $upper filter"
 		if [ $(echo $score'>'$lower | bc -l) -eq 1 ]
 		then

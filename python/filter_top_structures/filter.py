@@ -6,7 +6,7 @@
 import sys
 import os
 
-top_cutoff = 100 #define how many to take
+top_cutoff = 102 #define how many to take
 
 fin = open(sys.argv[1],'r') # open the input file
 poses = [] # array of every pose in scorefile
@@ -26,7 +26,12 @@ os.system('mkdir '+dirname)
 fout = open(dirname+'/score.sc','w') # write out the reduced scorefile
 
 for i in poses_top: # for all of the best poses
+  
+  # Write to a new scorefile
   fout.write('{}\n'.format(i[0])) 
-  os.system('cp {}.pdb {}/'.format(i[0].split()[-1], dirname))
-fout.close()
 
+  # Copy every file in the top list, that ends with pdb to the top__ directory
+  # from the scorefile list, take the last string, then split and take the front before underscore 
+  # to get the pdb filename root
+  os.system('cp {}.pdb {}/'.format(i[0].split()[-1].split("_")[0], dirname)) 
+fout.close()

@@ -1,0 +1,31 @@
+<ROSETTASCRIPTS>
+	<SCOREFXNS>
+		<ScoreFunction name="beta_cst" weights="beta_cst" symmetric="true">
+			<Reweight scoretype="atom_pair_constraint" weight="2.0" />
+			<Reweight scoretype="angle_constraint" weight="2.0" />
+			<Reweight scoretype="dihedral_constraint" weight="2.0" />
+			<Reweight scoretype="coordinate_constraint" weight="2.0" />
+		</ScoreFunction>
+	</SCOREFXNS>
+	<RESIDUE_SELECTORS>
+		<ResidueName name="diRh_site" residue_names="DRE" residue_name3="DRE" />
+	</RESIDUE_SELECTORS>
+  	<TASKOPERATIONS>	
+  		<ReadResfile name="resfile_in" filename="resfile_TIM_p6.res"/>
+  		<OperateOnResidueSubset name="PreserveDiRh" selector="diRh_site">
+			<RestrictToRepackingRLT/>
+  		</OperateOnResidueSubset>
+	</TASKOPERATIONS>	
+	<MOVERS>
+		<ConstraintSetMover name="add_cst" add_constraints="true" cst_file="%%constraints%%"/>
+		<SetupForSymmetry name="symmetrize" definition="%%symmetry%%"/>
+		<FastDesign name="fastdesign" scorefxn="beta_cst" clear_designable_residues="false" ramp_down_constraints="false" task_operations="resfile_in,PreserveDiRh"/>
+	</MOVERS>
+	<FILTERS>
+	</FILTERS>
+	<PROTOCOLS>
+		<Add mover="symmetrize" />
+		<Add mover="add_cst" />
+		<Add mover="fastdesign" />
+	</PROTOCOLS>
+</ROSETTASCRIPTS>

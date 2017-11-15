@@ -1,0 +1,20 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="scorefxn1" weights="ref2015"/> 
+    </SCOREFXNS>
+    <RESIDUE_SELECTORS>
+    </RESIDUE_SELECTORS>
+    <TASKOPERATIONS>
+    </TASKOPERATIONS>
+    <FILTERS>
+        <ScoreType name="fa_rep_filter" scorefxn="scorefxn1" score_type="fa_rep" threshold="1000"/>
+    </FILTERS>
+    <MOVERS>
+        <SetupForSymmetry name="symmetric" definition="C4_Z.sym" preserve_datacache="0"/>
+    </MOVERS>
+    <APPLY_TO_POSE>
+    </APPLY_TO_POSE>
+    <PROTOCOLS>
+        <Add mover="symmetric"/>
+    </PROTOCOLS>
+</ROSETTASCRIPTS>

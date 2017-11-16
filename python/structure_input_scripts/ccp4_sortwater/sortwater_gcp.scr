@@ -1,0 +1,46 @@
+#!/bin/sh
+
+###########################################################
+# 
+#  SORTWATER for GMPPCP structure
+#
+#  
+#
+###########################################################
+
+##########################################################
+# ASSIGN WATERS TO PROTEIN CHAINS
+#
+# Waters associated with chain A will be assigned
+# to chain G; those associated with chain B will
+# be assigned to chain G.
+# Waters associated with chain C will be assigned
+# to chain I; those associated with chain D will
+# be assigned to chain J.
+
+sortwater XYZIN /home/shane/scripts/ccp4_sortwater/aph_gmppcp_281_A3_1_refmac45.pdb \
+          XYZOUT /home/shane/scripts/ccp4_sortwater/aph_gmppcp_281_A3_1_refmac45_sorted.pdb <<end-sort
+VERBOSE
+# Define chain IDs of protein
+CHAINS A B C D
+# Define corresponding IDs for water chains to
+# correspond to protein chains in output file
+WCHAINS G H I J
+# Waters in /home/shane/crystalstructures/aph2/aph_gmppcp/aph_gmppcp_281_A3_1/watersort/aph_gmppcp_281_A3_1_refmac45.pdb are HOH O1
+WATER HOH O
+# define NCS
+#From coot script coot_print_ncs_matrices.py, run on structure:
+
+#Transposed matrix for sortwater input, superposing B onto A
+#Format is m11 m12 m13 m21 m22 m23 m31 m32 m33 t1 t2 t3
+NCS B A MATRIX  0.072723  0.997280 -0.012017  0.990924 -0.073615 -0.112473 -0.113052 -0.003729 -0.993582  41.438828 -39.633568  77.241619
+#Transposed matrix for sortwater input, superposing C onto A
+#Format is m11 m12 m13 m21 m22 m23 m31 m32 m33 t1 t2 t3
+NCS C A MATRIX -0.999383  0.016931 -0.030775 -0.018355 -0.998745  0.046589 -0.029947  0.047125  0.998440 113.958678  27.821000 -18.818280
+#Transposed matrix for sortwater input, superposing D onto A
+#Format is m11 m12 m13 m21 m22 m23 m31 m32 m33 t1 t2 t3
+NCS D A MATRIX -0.046929 -0.998502  0.028144 -0.985843  0.050838  0.159776 -0.160967 -0.020248 -0.986752  84.970102  70.788464  88.765869
+
+SYMMETRY 4
+end-sort
+

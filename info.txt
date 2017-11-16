@@ -1,0 +1,31 @@
+2016.06.14
+
+This is a script I hacked together to draw a 3D superhelix. Initially for figuring out the formulae for graphics for superhelical.com website, it became a challenge to work out the formulas to draw any arbitrary superhelix. 
+
+Some sources online helped out, especially the people at /r/mathematics:
+
+The code was developed from a demo of python, modified based on working out the math for the helix. 
+
+At this point, everything looks good for reasonable pitches, but on high inclines, something still goes wrong and distorts the secondary helix. There's probably still some small factor overlooked. 
+
+Image of equations as derived is provided as an image.  
+
+Slope of the helical incline is c, where the corresponding angle, phi, is arctan(c)
+
+The problem is something to do with a, the central radius. There is no problem at a = 1, but if it is smaller or bigger, then distoration happens.
+
+So, r isn't a + cos(bt), it's a(1+ cos(bt))
+
+Also, the period of the primary versus secondary helix needed to be scaled by cos(phi).
+
+At this point I have it all figured out. So, to walk through the derivation:
+
+Plot first as a helix circling an inclined line on the theta-z plane.
+
+Inclined line meets the origin at angle phi.
+
+Circle with centre on line perpendicular to page moves up line, tracing out helix on the perimeter. 
+
+Centre of the circle is determined by t
+
+Derivation is on scrap paper
